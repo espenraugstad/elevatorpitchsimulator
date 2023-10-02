@@ -1,3 +1,5 @@
+const tracks = [new Audio("../assets/glass-of-wine-143532.mp3")];
+
 const f9 = document.getElementById("f9");
 const f8 = document.getElementById("f8");
 const f7 = document.getElementById("f7");
@@ -13,7 +15,7 @@ const floors = document.querySelectorAll(".current");
 
 let currentFloor = "f1";
 let targetFloor = "f1";
-let running;
+let running = -1;
 
 const floorNames = [
   "stop",
@@ -32,13 +34,18 @@ const floorNames = [
 const bts = [fu, f1, f2, f3, f4, f5, f6, f7, f8, f9];
 for (let btn of bts) {
   btn.addEventListener("click", (e) => {
-    targetFloor = e.target.id;
-    runElevator();
+    if (running === -1) {
+      targetFloor = e.target.id;
+      tracks[0].play();
+      runElevator();
+    }
   });
 }
 
 stopp.addEventListener("click", () => {
   clearTimeout(running);
+  running = -1;
+  tracks[0].pause();
 });
 
 function runElevator() {
@@ -52,6 +59,7 @@ function runElevator() {
       () => advanceElevator(currentIndex, targetIndex),
       2000
     );
+    console.log(running);
   }
 }
 
