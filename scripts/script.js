@@ -2,7 +2,7 @@ const tracks = [
   new Audio("../assets/glass-of-wine-143532.mp3"),
   new Audio("../assets/jazz-bossa-nova-163669.mp3"),
   new Audio("../assets/yesterday-jazz-elevator-147660.mp3"),
-  new Audio("../assets/elevator-music-lofi-version-30s-10822.mp3")
+  new Audio("../assets/elevator-music-lofi-version-30s-10822.mp3"),
 ];
 
 /* const tracks = [
@@ -11,6 +11,8 @@ const tracks = [
   ]; */
 
 const ding = new Audio("../assets/t2.wav");
+
+const playMuzak = document.getElementById("playMuzak");
 
 const f9 = document.getElementById("f9");
 const f8 = document.getElementById("f8");
@@ -30,6 +32,7 @@ let targetFloor = "f1";
 let running = -1;
 let fading;
 let muzak = false;
+let muzakActive = true;
 let currentTrackIndex = 0;
 
 const floorNames = [
@@ -56,34 +59,45 @@ for (let btn of bts) {
   });
 }
 
+playMuzak.addEventListener("change", () => {
+  
+  if(playMuzak.checked){
+    console.log("Changed");
+    fading = setInterval(fadeMusic, 100);    muzakActive = false
+  } else {
+    muzakActive = true;
+  }
+});
+
 stopp.addEventListener("click", stopElevator);
 
-function stopElevator(){
-    clearTimeout(running);
-    running = -1;
-    //tracks[currentTrackIndex].pause();
-    console.log(tracks[currentTrackIndex]);
+function stopElevator() {
+  clearTimeout(running);
+  running = -1;
+  //tracks[currentTrackIndex].pause();
+  console.log(tracks[currentTrackIndex]);
+  if (muzakActive) {
     ding.play();
- 
-    fading = setInterval(fadeMusic, 100);
-    console.log(tracks[currentTrackIndex].volume);   
+  }
+
+  fading = setInterval(fadeMusic, 100);
+  console.log(tracks[currentTrackIndex].volume);
 }
 
-function fadeMusic(){
-    if(tracks[currentTrackIndex].volume > 0.1){
-        tracks[currentTrackIndex].volume -= 0.1;
-    } else{
-        clearInterval(fading);
-        tracks[currentTrackIndex].pause(); 
+function fadeMusic() {
+  if (tracks[currentTrackIndex].volume > 0.1) {
+    tracks[currentTrackIndex].volume -= 0.1;
+  } else {
+    clearInterval(fading);
+    tracks[currentTrackIndex].pause();
 
     muzak = false;
-    }
-    
+  }
 }
 
 function runElevator() {
-    console.log(muzak);
-  if (!muzak) {
+  console.log(muzak);
+  if (!muzak && muzakActive) {
     console.log("Selecting track");
     currentTrackIndex = Math.floor(Math.random() * tracks.length);
     tracks[currentTrackIndex].volume = 1;
