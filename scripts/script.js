@@ -1,4 +1,16 @@
-const tracks = [new Audio("../assets/glass-of-wine-143532.mp3")];
+const tracks = [
+  new Audio("../assets/glass-of-wine-143532.mp3"),
+  new Audio("../assets/jazz-bossa-nova-163669.mp3"),
+  new Audio("../assets/yesterday-jazz-elevator-147660.mp3"),
+  new Audio("../assets/elevator-music-lofi-version-30s-10822.mp3")
+];
+
+/* const tracks = [
+    new Audio("../assets/t1.wav"),
+    new Audio("../assets/t2.wav"),
+  ]; */
+
+const ding = new Audio("../assets/t2.wav");
 
 const f9 = document.getElementById("f9");
 const f8 = document.getElementById("f8");
@@ -16,6 +28,9 @@ const floors = document.querySelectorAll(".current");
 let currentFloor = "f1";
 let targetFloor = "f1";
 let running = -1;
+let fading;
+let muzak = false;
+let currentTrackIndex = 0;
 
 const floorNames = [
   "stop",
@@ -36,19 +51,45 @@ for (let btn of bts) {
   btn.addEventListener("click", (e) => {
     if (running === -1) {
       targetFloor = e.target.id;
-      tracks[0].play();
       runElevator();
     }
   });
 }
 
-stopp.addEventListener("click", () => {
-  clearTimeout(running);
-  running = -1;
-  tracks[0].pause();
-});
+stopp.addEventListener("click", stopElevator);
+
+function stopElevator(){
+    clearTimeout(running);
+    running = -1;
+    //tracks[currentTrackIndex].pause();
+    console.log(tracks[currentTrackIndex]);
+    ding.play();
+ 
+    fading = setInterval(fadeMusic, 100);
+    console.log(tracks[currentTrackIndex].volume);   
+}
+
+function fadeMusic(){
+    if(tracks[currentTrackIndex].volume > 0.1){
+        tracks[currentTrackIndex].volume -= 0.1;
+    } else{
+        clearInterval(fading);
+        tracks[currentTrackIndex].pause(); 
+
+    muzak = false;
+    }
+    
+}
 
 function runElevator() {
+    console.log(muzak);
+  if (!muzak) {
+    console.log("Selecting track");
+    currentTrackIndex = Math.floor(Math.random() * tracks.length);
+    tracks[currentTrackIndex].volume = 1;
+    tracks[currentTrackIndex].play();
+    muzak = true;
+  }
   // Get current floor index
   let currentIndex = floorNames.findIndex((f) => f === currentFloor);
   // Target floor index
@@ -59,11 +100,15 @@ function runElevator() {
       () => advanceElevator(currentIndex, targetIndex),
       2000
     );
-    console.log(running);
+  } else {
+    stopElevator();
   }
 }
 
 function advanceElevator(cIndex, tIndex) {
+  if (tracks[currentTrackIndex].ended) {
+    muzak = false;
+  }
   // Turn off active class on current active
   if (cIndex < tIndex) {
     floors[cIndex - 1].classList.remove("active");
@@ -74,5 +119,6 @@ function advanceElevator(cIndex, tIndex) {
     floors[cIndex - 2].classList.add("active");
     currentFloor = bts[cIndex - 2].id;
   }
+
   runElevator();
 }

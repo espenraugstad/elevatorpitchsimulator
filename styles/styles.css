@@ -1,81 +1,82 @@
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    flex-direction: column;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-main{
-    display: flex;
+main {
+  display: flex;
 }
 
 #buttons {
-    display: grid;
-    grid-template-columns: 60px 60px;
-    gap: 0.5rem;
-    background-color: #8e8e8e;
-    width: 200px;
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-    border-radius: 15px;
-    padding: 0.5rem 0;
-    margin: 1rem;
-  }
+  display: grid;
+  grid-template-columns: 60px 60px;
+  gap: 0.5rem;
+  background-color: #8e8e8e;
+  width: 200px;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  border-radius: 15px;
+  padding: 0.5rem 0;
+  margin: 1rem;
+}
 
-  #stop {
-    grid-column: 1 / span 2;
-    width: 100%;
-    background-color: red;
-    color: white;
-    text-transform: uppercase;
-    font-weight: 900;
-  }
+#stop {
+  grid-column: 1 / span 2;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 900;
+}
 
-  button {
-    border: 2px solid white;
-    margin: 1rem 0;
-    border-radius: 10000px;
-    height: 32px;
-    width: 32px;
-    font-size: 1rem;
-  }
+button {
+  border: 2px solid white;
+  margin: 1rem 0;
+  border-radius: 10000px;
+  height: 32px;
+  width: 32px;
+  font-size: 1rem;
+}
 
-  button:hover {
-    filter: brightness(50%);
-    cursor: pointer;
-  }
+button:hover {
+  filter: brightness(50%);
+  cursor: pointer;
+}
 
-  .floors {
-    width: 2rem;
-    background-color: black;
-    color: white;
-  }
+.floors {
+  width: 2rem;
+  background-color: black;
+  color: white;
+}
 
-  #floor {
-    margin: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 2rem;
-    background-color: gainsboro;
-    border-radius: 15px;
-  }
+#floor {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+  background-color: gainsboro;
+  border-radius: 15px;
+}
 
-  .current {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3.5rem;
-    font-weight: 400;
-    margin: 0 1.5rem;
-    color: white;
-    background-color: blanchedalmond;
-    border: 2px solid black;
-    width: 70px;
-    height: 70px;
-  }
+.current {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.5rem;
+  font-weight: 400;
+  margin: 0 1.5rem;
+  color: white;
+  background-color: blanchedalmond;
+  border: 2px solid black;
+  width: 70px;
+  height: 70px;
+}
 
-  .active {
-    color: black;
-    background-color: yellow;
-  }
+.active {
+  color: black;
+  background-color: yellow;
+}
