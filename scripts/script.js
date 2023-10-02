@@ -10,7 +10,7 @@ const tracks = [
     new Audio("../assets/t2.wav"),
   ]; */
 
-const ding = new Audio(window.location + "../assets/t2.wav");
+const ding = new Audio(window.location + "/assets/t2.wav");
 
 const playMuzak = document.getElementById("playMuzak");
 
