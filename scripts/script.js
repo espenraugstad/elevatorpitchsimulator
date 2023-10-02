@@ -5,11 +5,6 @@ const tracks = [
   new Audio(window.location + "/assets/elevator-music-lofi-version-30s-10822.mp3"),
 ];
 
-/* const tracks = [
-    new Audio("../assets/t1.wav"),
-    new Audio("../assets/t2.wav"),
-  ]; */
-
 const ding = new Audio(window.location + "/assets/t2.wav");
 
 const playMuzak = document.getElementById("playMuzak");
@@ -62,7 +57,6 @@ for (let btn of bts) {
 playMuzak.addEventListener("change", () => {
   
   if(playMuzak.checked){
-    console.log("Changed");
     fading = setInterval(fadeMusic, 100);    muzakActive = false
   } else {
     muzakActive = true;
@@ -74,14 +68,11 @@ stopp.addEventListener("click", stopElevator);
 function stopElevator() {
   clearTimeout(running);
   running = -1;
-  //tracks[currentTrackIndex].pause();
-  console.log(tracks[currentTrackIndex]);
   if (muzakActive) {
     ding.play();
   }
 
   fading = setInterval(fadeMusic, 100);
-  console.log(tracks[currentTrackIndex].volume);
 }
 
 function fadeMusic() {
@@ -96,9 +87,7 @@ function fadeMusic() {
 }
 
 function runElevator() {
-  console.log(muzak);
   if (!muzak && muzakActive) {
-    console.log("Selecting track");
     currentTrackIndex = Math.floor(Math.random() * tracks.length);
     tracks[currentTrackIndex].volume = 1;
     tracks[currentTrackIndex].play();
