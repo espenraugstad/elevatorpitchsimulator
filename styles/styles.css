@@ -4,6 +4,10 @@ body{
     flex-direction: column;
 }
 
+main{
+    display: flex;
+}
+
 #buttons {
     display: grid;
     grid-template-columns: 60px 60px;
@@ -39,4 +43,38 @@ body{
   button:hover {
     filter: brightness(50%);
     cursor: pointer;
+  }
+
+  .floors {
+    width: 2rem;
+    background-color: black;
+    color: white;
+  }
+
+  #floor {
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
+    background-color: gainsboro;
+  }
+
+  .current {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5rem;
+    font-weight: 400;
+    margin: 0 1.5rem;
+    color: white;
+    background-color: blanchedalmond;
+    border: 2px solid black;
+    width: 70px;
+    height: 70px;
+  }
+
+  .active {
+    color: black;
+    background-color: yellow;
   }
