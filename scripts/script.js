@@ -1,8 +1,8 @@
 const tracks = [
-  new Audio("../assets/glass-of-wine-143532.mp3"),
-  new Audio("../assets/jazz-bossa-nova-163669.mp3"),
-  new Audio("../assets/yesterday-jazz-elevator-147660.mp3"),
-  new Audio("../assets/elevator-music-lofi-version-30s-10822.mp3"),
+  new Audio(window.location + "/assets/glass-of-wine-143532.mp3"),
+  new Audio(window.location + "/assets/jazz-bossa-nova-163669.mp3"),
+  new Audio(window.location + "/assets/yesterday-jazz-elevator-147660.mp3"),
+  new Audio(window.location + "/assets/elevator-music-lofi-version-30s-10822.mp3"),
 ];
 
 /* const tracks = [
@@ -10,7 +10,7 @@ const tracks = [
     new Audio("../assets/t2.wav"),
   ]; */
 
-const ding = new Audio("../assets/t2.wav");
+const ding = new Audio(window.location + "../assets/t2.wav");
 
 const playMuzak = document.getElementById("playMuzak");
 
